@@ -1,6 +1,6 @@
 # 경두개 자기 자극(Transcranial Magnetic Stimulation, TMS)의 전자기장 모델링
 
-**EEC2204-004 전자기학 2 | 텀 프로젝트 과제 명세서(TERM PROJECT SPECIFICATION) | **  
+**EEC2204 전자기학 2 | 텀 프로젝트(TERM PROJECT)**  
 인하대학교 전기전자공학부 | 담당교수: 이지호 | 총점: 100점
 
 ---
