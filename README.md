@@ -1,7 +1,7 @@
-# 경두개 자기 자극(Transcranial Magnetic Stimulation, TMS)의 전자기장 모델링: 코일 인덕턴스, 4층 두부 유도, 설계 트레이드오프 및 활동전위 발생
+# 경두개 자기 자극(Transcranial Magnetic Stimulation, TMS)의 전자기장 모델링
 
-**2026학년도 2학기 | 텀 프로젝트 과제 명세서(TERM PROJECT SPECIFICATION) | EEC2204-004 전자기학 2**  
-인하대학교 전기전자공학부 | 담당교수: 이지호 조교수 | 총점: 100점
+**EEC2204-004 전자기학 2 | 텀 프로젝트 과제 명세서(TERM PROJECT SPECIFICATION) | **  
+인하대학교 전기전자공학부 | 담당교수: 이지호 | 총점: 100점
 
 ---
 
