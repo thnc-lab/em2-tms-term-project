@@ -1,0 +1,4 @@
+numpy
+matplotlib
+# 노트북(tms_simulation_starter.ipynb)을 사용할 경우
+jupyter
