@@ -1,7 +1,7 @@
-# 경두개 자기 자극(Transcranial Magnetic Stimulation, TMS)의 전자기장 모델링
+# 경두개 자기 자극(Transcranial Magnetic Stimulation, TMS)의 전자기장 모델링: 코일 인덕턴스, 4층 두부 유도, 설계 트레이드오프 및 활동전위 발생
 
-**EEC2204 전자기학 2 | 텀 프로젝트(TERM PROJECT)**  
-인하대학교 전기전자공학부 | 담당교수: 이지호 | 총점: 100점
+**2026학년도 2학기 | 텀 프로젝트 과제 명세서(TERM PROJECT SPECIFICATION) | EEC2204-004 전자기학 2**  
+인하대학교 전기전자공학부 | 담당교수: 이지호 조교수 | 총점: 100점
 
 ---
 
@@ -223,12 +223,13 @@ Task 2.1에서 유도한 유도 전기장 식을 이용해 조직 내 전기장�
 
 ![유도 전기장과 뉴런의 결합](handout_figures/neuron_coupling.png)
 
-**그림 5.** 유도 전기장과 뉴런(축삭)의 결합. (a) 전기장을 축삭 방향 성분 $E_\parallel$과 수직 성분 $E_\perp$로 분해. (b) $E_\parallel$에 의한 세포 내 전류와 축삭 양 끝의 막전위 변화.
+**그림 5.** 유도 전기장과 뉴런(축삭)의 결합. (a) 전기장을 축삭 방향 성분 $E_{\parallel}$과 수직 성분 $E_{\perp}$로 분해. (b) $E_{\parallel}$에 의한 세포 내 전류와 축삭 양 끝의 막전위 변화.
 
-- **축삭 방향 성분(그림 5(a)):** 축삭 방향 단위 벡터를 $\mathbf{u}_{\text{neuron}}$이라 하면 전기장은 축삭과 나란한 성분 $E_\parallel = \mathbf{E}\cdot\mathbf{u}_{\text{neuron}} = |\mathbf{E}|\cos\theta$와 수직 성분 $E_\perp$로 나눌 수 있음.
-- **평행 성분만 중요한 이유(그림 5(b)):** $E_\parallel$은 축삭 길이 방향(~mm)으로 세포 내 전류(intracellular current)를 흐르게 하고, 이 전류가 축삭의 끝이나 굽은 부분에서 막을 통과해 밖으로 나가면서 그 부분의 막을 탈분극(depolarization)시킴. 막전위가 역치를 넘으면 활동전위(action potential)가 발생함. 반면 $E_\perp$는 지름(~μm) 방향으로만 작용하므로 막전위 변화가 매우 작음. 따라서 같은 크기의 전기장이라도 축삭과 나란하면($\theta = 0^\circ$) 자극 효과가 최대이고, 수직이면($\theta = 90^\circ$) 거의 없음. 실제 TMS에서 코일의 방향(orientation)이 중요한 이유임.
-- **제공 뉴런 모델의 입력:** `neuron_model.py`는 축삭 방향 전기장 $E_{\text{eff}}(t) = \mathbf{E}(\mathbf{r}_{\text{neuron}}, t)\cdot\mathbf{u}_{\text{neuron}}$을 막 자극 전류 $I_{\text{stim}}(t) = g_{\text{couple}}\,E_{\text{eff}}(t)$로 변환하여 호지킨-헉슬리 방정식에 입력함($g_{\text{couple}} = 5.2\ (\mu\text{A/cm}^2)/(\text{V/m})$). $E_{\text{eff}} > 0$이면 탈분극, $E_{\text{eff}} < 0$이면 과분극(hyperpolarization) 방향으로 작용함.
-- **모델의 한계:** 실제로 길고 곧은 축삭은 축삭을 따라 전기장이 변하는 정도(활성화 함수(activating function) $\partial E_\parallel/\partial s$)에 주로 반응하며, $E_\parallel$에 비례하는 반응은 축삭의 끝이나 굽은 부분에서 나타남. 본 모델은 이를 단순 비례 결합으로 근사한 것임.
+- **축삭 방향 성분(그림 5(a)):** 축삭 방향 단위 벡터를 $\mathbf{u}_{\text{neuron}}$이라 하면 전기장은 축삭과 나란한 성분 $E_{\parallel} = \mathbf{E}\cdot\mathbf{u}_{\text{neuron}} = |\mathbf{E}|\cos\theta$와 수직 성분 $E_{\perp}$로 나눌 수 있음.
+- **평행 성분만 중요한 이유(그림 5(b)):** $E_{\parallel}$은 축삭 길이 방향(수 mm)으로 세포 내 전류(intracellular current)를 흐르게 하고, 이 전류가 축삭의 끝이나 굽은 부분에서 막을 통과해 밖으로 나가면서 그 부분의 막을 탈분극(depolarization)시킴. 막전위가 역치를 넘으면 활동전위(action potential)가 발생함. 반면 $E_{\perp}$는 지름(수 μm) 방향으로만 작용하므로 막전위 변화가 매우 작음. 따라서 같은 크기의 전기장이라도 축삭과 나란하면($\theta = 0^\circ$) 자극 효과가 최대이고, 수직이면($\theta = 90^\circ$) 거의 없음. 실제 TMS에서 코일의 방향(orientation)이 중요한 이유임.
+- **제공 뉴런 모델의 입력:** `neuron_model.py`는 축삭 방향 전기장 $E_{\text{eff}}(t) = \mathbf{E}(\mathbf{r}_{\text{neuron}}, t)\cdot\mathbf{u}_{\text{neuron}}$을 막 자극 전류 $I_{\text{stim}}(t) = g_{\text{couple}}\,E_{\text{eff}}(t)$로 변환하여 호지킨-헉슬리 방정식에 입력함($g_{\text{couple}} = 5.2\ (\mu\text{A/cm}^2)/(\text{V/m})$). $E_{\text{eff}} > 0$이면 탈분극, $E_{\text{eff}} \lt 0$이면 과분극(hyperpolarization) 방향으로 작용함.
+- **모델의 한계:** 실제로 길고 곧은 축삭은 축삭을 따라 전기장이 변하는 정도(활성화 함수(activating function) $\partial E_{\parallel}/\partial s$)에 주로 반응하며, $E_{\parallel}$에 비례하는 반응은 축삭의 끝이나 굽은 부분에서 나타남. 본 모델은 이를 단순 비례 결합으로 근사한 것임.
+
 #### Task 3.1 — 발화 선택성과 임계 구동 조건 (20점)
 
 유도 전기장을 호지킨-헉슬리(Hodgkin–Huxley) 뉴런 모델에 입력하여 표적 뉴런만 선택적으로 발화하는지 확인하고, 발화에 필요한 최소 구동 조건을 구함.
