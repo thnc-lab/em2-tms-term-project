@@ -69,11 +69,11 @@ $$
 
 ### 2.2 시뮬레이션 구성(Simulation Configuration)
 
-공기–두피(air–scalp) 경계면을 $z = 0$으로 두는 직교좌표계(Cartesian coordinates)를 사용하며, $z > 0$ 영역은 공기, $z \le 0$ 영역은 4개의 수평 조직 층(tissue layer)임. TMS 코일은 원형 코일(circular coil) 또는 8자형 코일(figure-8 coil)을 고려하며, $z = +h$ 평면에 수평으로 배치하고 코일의 두께는 고려하지 않음. 대뇌 피질의 표적(target) 뉴런은 8자형 코일 중심 아래 $\mathbf{r}_{\text{target}} = (0, 0, -20\ \text{mm})$에, 비표적(off-target) 뉴런은 측방 $\mathbf{r}_{\text{off}} = (40\ \text{mm}, 0, -20\ \text{mm})$에 위치하며, 두 뉴런 모두 축삭 단위 벡터(axon unit vector) $\mathbf{u}_{\text{neuron}} = -\mathbf{a}_y$ 방향으로 정렬됨. 뉴런은 유도 전기장 중 축삭 방향 성분에 반응하며, 축삭 방향과 전기장의 관계는 Task 3의 배경 설명(그림 5)을 참고함.
+공기–두피(air–scalp) 경계면을 $z = 0$으로 두는 직교좌표계(Cartesian coordinates)를 사용하며, $z > 0$ 영역은 공기, $z \le 0$ 영역은 4개의 수평 조직 층(tissue layer)임. TMS 코일은 원형 코일(circular coil) 또는 8자형 코일(figure-8 coil)을 고려하며, $z = +h$ 평면에 수평으로 배치하고 코일의 두께는 고려하지 않음. 대뇌 피질의 표적(target) 뉴런은 8자형 코일 중심 아래 $\mathbf r_{\text{target}} = (0, 0, -20\ \text{mm})$에, 비표적(off-target) 뉴런은 측방 $\mathbf r_{\text{off}} = (40\ \text{mm}, 0, -20\ \text{mm})$에 위치하며, 두 뉴런 모두 축삭 단위 벡터(axon unit vector) $\mathbf u_{\text{neuron}} = -\mathbf a_y$ 방향으로 정렬됨. 뉴런은 유도 전기장 중 축삭 방향 성분에 반응하며, 축삭 방향과 전기장의 관계는 Task 3의 배경 설명(그림 5)을 참고함.
 
 ![코일 및 4층 두부 모델 형상](handout_figures/model_geometry.png)
 
-**그림 3.** 코일과 4층 두부 모델 형상. (a), (b) 원형 코일과 8자형 코일을 위에서 본 그림으로, 화살표는 전류 방향임. 8자형 코일은 중앙 접합부에서 두 날개의 전류가 모두 $+\mathbf{a}_y$ 방향이 되도록 왼쪽 날개를 반시계방향(CCW), 오른쪽 날개를 시계방향(CW)으로 감음. (c), (d) $y = 0$ 단면에서 본 코일 도선(⊙: 지면에서 나오는 전류, ⊗: 지면으로 들어가는 전류)과 4층 두부, 표적/비표적 뉴런 위치.
+**그림 3.** 코일과 4층 두부 모델 형상. (a), (b) 원형 코일과 8자형 코일을 위에서 본 그림으로, 화살표는 전류 방향임. 8자형 코일은 중앙 접합부에서 두 날개의 전류가 모두 $+\mathbf a_y$ 방향이 되도록 왼쪽 날개를 반시계방향(CCW), 오른쪽 날개를 시계방향(CW)으로 감음. (c), (d) $y = 0$ 단면에서 본 코일 도선(⊙: 지면에서 나오는 전류, ⊗: 지면으로 들어가는 전류)과 4층 두부, 표적/비표적 뉴런 위치.
 
 
 | 공간/도형 변수                 | 값                                      | 물리적 의미                                                                                                                                                               |
@@ -128,7 +128,7 @@ $$
 **구현할 함수:**
 
 - `make_circular_loop`: 수평 원형 루프(circular loop)를 $K$개의 직선 선분(segment)으로 나누어 각 선분의 중점 위치와 방향 벡터(chord vector)를 만듦. 감는 방향(반시계/시계)을 지정할 수 있음.
-- `build_figure8_coil`: 원형 루프 두 개를 좌우에 배치해 8자형 코일(figure-8 coil)을 만듦. 중앙 접합부(junction)에서 두 날개(wing)의 전류가 모두 $+\mathbf{a}_y$ 방향이 되도록 왼쪽 날개는 반시계방향(CCW), 오른쪽 날개는 시계방향(CW)으로 감음.
+- `build_figure8_coil`: 원형 루프 두 개를 좌우에 배치해 8자형 코일(figure-8 coil)을 만듦. 중앙 접합부(junction)에서 두 날개(wing)의 전류가 모두 $+\mathbf a_y$ 방향이 되도록 왼쪽 날개는 반시계방향(CCW), 오른쪽 날개는 시계방향(CW)으로 감음.
 - `compute_unit_A_and_B`: 코일 선분들이 관측점(observation point)에 만드는 단위 전류(unit current, $I = 1\ \text{A}$)당 벡터 퍼텐셜(vector potential) $\tilde{\mathbf{A}}$와 자기선속밀도(magnetic flux density) $\tilde{\mathbf{B}}$를 아래 이산 합(discrete sum)으로 계산함. 실제 장은 전류를 곱해 $\mathbf{A} = I\tilde{\mathbf{A}},\ \mathbf{B} = I\tilde{\mathbf{B}}$로 얻음.
 - `analytical_circular_on_axis_Bz`: 손으로 유도한 원형 루프의 중심축(on-axis) $B_z$ 공식을 계산함. 수치해(numerical solution) 검증의 기준값임.
 - `verify_curl_A`: 한 점 주변에서 $\tilde{\mathbf{A}}$에 중앙 유한 차분(central finite difference)을 적용해 $\nabla\times\tilde{\mathbf{A}}$를 구하고, $\tilde{\mathbf{B}}$와의 상대오차(relative error)를 계산함.
@@ -225,9 +225,9 @@ Task 2.1에서 유도한 유도 전기장 식을 이용해 조직 내 전기장�
 
 **그림 5.** 유도 전기장과 뉴런(축삭)의 결합. (a) 전기장을 축삭 방향 성분 $E_{\parallel}$과 수직 성분 $E_{\perp}$로 분해. (b) $E_{\parallel}$에 의한 세포 내 전류와 축삭 양 끝의 막전위 변화.
 
-- **축삭 방향 성분(그림 5(a)):** 축삭 방향 단위 벡터를 $\mathbf{u}_{\text{neuron}}$이라 하면 전기장은 축삭과 나란한 성분 $E_{\parallel} = \mathbf{E}\cdot\mathbf{u}_{\text{neuron}} = |\mathbf{E}|\cos\theta$와 수직 성분 $E_{\perp}$로 나눌 수 있음.
+- **축삭 방향 성분(그림 5(a)):** 축삭 방향 단위 벡터를 $\mathbf u_{\text{neuron}}$이라 하면 전기장은 축삭과 나란한 성분 $E_{\parallel} = \mathbf{E}\cdot\mathbf u_{\text{neuron}} = |\mathbf{E}|\cos\theta$와 수직 성분 $E_{\perp}$로 나눌 수 있음.
 - **평행 성분만 중요한 이유(그림 5(b)):** $E_{\parallel}$은 축삭 길이 방향(수 mm)으로 세포 내 전류(intracellular current)를 흐르게 하고, 이 전류가 축삭의 끝이나 굽은 부분에서 막을 통과해 밖으로 나가면서 그 부분의 막을 탈분극(depolarization)시킴. 막전위가 역치를 넘으면 활동전위(action potential)가 발생함. 반면 $E_{\perp}$는 지름(수 μm) 방향으로만 작용하므로 막전위 변화가 매우 작음. 따라서 같은 크기의 전기장이라도 축삭과 나란하면($\theta = 0^\circ$) 자극 효과가 최대이고, 수직이면($\theta = 90^\circ$) 거의 없음. 실제 TMS에서 코일의 방향(orientation)이 중요한 이유임.
-- **제공 뉴런 모델의 입력:** `neuron_model.py`는 축삭 방향 전기장 $E_{\text{eff}}(t) = \mathbf{E}(\mathbf{r}_{\text{neuron}}, t)\cdot\mathbf{u}_{\text{neuron}}$을 막 자극 전류 $I_{\text{stim}}(t) = g_{\text{couple}}\,E_{\text{eff}}(t)$로 변환하여 호지킨-헉슬리 방정식에 입력함($g_{\text{couple}} = 5.2\ (\mu\text{A/cm}^2)/(\text{V/m})$). $E_{\text{eff}} > 0$이면 탈분극, $E_{\text{eff}} \lt 0$이면 과분극(hyperpolarization) 방향으로 작용함.
+- **제공 뉴런 모델의 입력:** `neuron_model.py`는 축삭 방향 전기장 $E_{\text{eff}}(t) = \mathbf{E}(\mathbf r_{\text{neuron}}, t)\cdot\mathbf u_{\text{neuron}}$을 막 자극 전류 $I_{\text{stim}}(t) = g_{\text{couple}}\,E_{\text{eff}}(t)$로 변환하여 호지킨-헉슬리 방정식에 입력함($g_{\text{couple}} = 5.2\ \mu\text{A}\,\text{cm}^{-2}\,(\text{V/m})^{-1}$). $E_{\text{eff}} > 0$이면 탈분극, $E_{\text{eff}} \lt 0$이면 과분극(hyperpolarization) 방향으로 작용함.
 - **모델의 한계:** 실제로 길고 곧은 축삭은 축삭을 따라 전기장이 변하는 정도(활성화 함수(activating function) $\partial E_{\parallel}/\partial s$)에 주로 반응하며, $E_{\parallel}$에 비례하는 반응은 축삭의 끝이나 굽은 부분에서 나타남. 본 모델은 이를 단순 비례 결합으로 근사한 것임.
 
 #### Task 3.1 — 발화 선택성과 임계 구동 조건 (20점)
@@ -236,7 +236,7 @@ Task 2.1에서 유도한 유도 전기장 식을 이용해 조직 내 전기장�
 
 **구현할 함수:**
 
-- `compute_E_eff_waveform`: 뉴런 위치에서 유도 전기장의 축삭 방향(axon direction) 성분 $E_{\text{eff}}(t) = \mathbf{E}(\mathbf{r}_{\text{neuron}}, t)\cdot\mathbf{u}_{\text{neuron}}$을 계산함. 이 파형을 그대로 `simulate_hh_neuron`에 입력함.
+- `compute_E_eff_waveform`: 뉴런 위치에서 유도 전기장의 축삭 방향(axon direction) 성분 $E_{\text{eff}}(t) = \mathbf{E}(\mathbf r_{\text{neuron}}, t)\cdot\mathbf u_{\text{neuron}}$을 계산함. 이 파형을 그대로 `simulate_hh_neuron`에 입력함.
 - `compute_fig8_thresholds`: $E \propto I_{\text{peak}}$ 관계를 이용해 뉴런 발화 역치(firing threshold) $E_{\text{th}}$에 해당하는 8자형 코일의 임계 전류 $I_{\text{peak,th}}$, 임계 전압 $V_{\text{coil,th}}$, 임계 에너지 $W_{m,\text{th}}$를 계산함($T_{\text{rise}} = 0.06\ \text{ms}$ 고정).
 - `find_max_standoff`: 명목 전류 $6.0\ \text{kA}$에서 표적 뉴런을 여전히 발화시킬 수 있는 최대 이격 거리 $h_{\max}$를 이분법(bisection)으로 찾음.
 
